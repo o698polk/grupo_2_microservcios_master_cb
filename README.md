@@ -164,6 +164,61 @@ Validación manual de cada endpoint utilizando comandos cURL.
 
 ---
 
+## 5️ API Desplegada en la Nube (Google Cloud)
+
+El proyecto fue integrado y desplegado exitosamente en un entorno cloud, permitiendo el acceso público a la API desde internet.
+
+
+### 5.1 Merge Realizado Correctamente sin Conflictos
+
+Se realizó la integración final de las ramas hacia `main` sin presentar conflictos, asegurando estabilidad del código antes del despliegue en producción.
+
+![Merge exitoso](/capturas_pantalla/merge_exi.png)
+
+
+### 5.2 Proceso de Publicación en Google Cloud Exitoso
+
+Se llevó a cabo el despliegue de la aplicación utilizando Google Cloud Run, construyendo la imagen del contenedor y publicándola en un entorno productivo.
+
+Este proceso incluyó:
+- Construcción automática de la imagen Docker
+- Publicación en Artifact Registry
+- Despliegue del servicio en Cloud Run
+- Configuración de acceso público
+
+![Despliegue en Google Cloud](/capturas_pantalla/googlecloud.png)
+
+
+##  6️ Endpoint Accesible Públicamente
+
+Una vez desplegada, la API quedó disponible a través de una URL pública, permitiendo su acceso desde navegador o herramientas como `curl`.
+
+
+### 6.1 Acceso al Menú Principal desde el Navegador
+
+Visualización del endpoint raíz (`/`) directamente desde el navegador, confirmando que el servicio se encuentra activo en la nube.
+
+![Endpoint navegador](/capturas_pantalla/endpoidaccebli.png)
+
+### 6.2 Acceso al Endpoint usando cURL
+
+Prueba del endpoint público utilizando `curl`, validando la correcta respuesta del servicio desde línea de comandos.
+
+![Endpoint curl](/capturas_pantalla/epcur1.png)
+
+### 6.3 Creación y Consulta de Registros en el Entorno Cloud
+
+Se realizó la creación de un nuevo registro validando la existencia del país mediante la API externa y posteriormente se consultaron todos los registros almacenados.
+
+Con esta prueba se confirma:
+
+- Correcto funcionamiento del endpoint público
+- Integración exitosa con la API externa
+- Persistencia de datos en el entorno desplegado
+- Funcionamiento completo del CRUD en producción
+
+![Validación en Google Cloud](/capturas_pantalla/googlecloud3.png)
+
 #  Tecnologías Utilizadas
 
 - Python 3
