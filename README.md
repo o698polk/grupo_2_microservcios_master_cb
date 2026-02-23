@@ -85,7 +85,7 @@ Creación y configuración de:
 - `requirements.txt`
 - Contenerización del proyecto para su despliegue
 
-![Archivos Docker y configuración](/capturas_pantalla/pol2.png)
+![Archivos Docker y configuración](/capturas_pantalla/pol3.png)
 
 ---
 
