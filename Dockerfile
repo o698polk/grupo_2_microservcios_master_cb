@@ -19,7 +19,7 @@ RUN pip install --upgrade pip \
 COPY . .
 
 # Exponer el puerto
-EXPOSE 8000
+EXPOSE 8080
 
 # Ejecutar la aplicación
 CMD ["python", "app.py"]
