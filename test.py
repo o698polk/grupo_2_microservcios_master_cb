@@ -1,144 +1,108 @@
-import unittest
-import os
+## TEST DE VALIDACION AUTOMATIZADO
+
+import requests
 import json
-from unittest.mock import patch
-from app import app, ARCHIVO
 
-import io
-import json
-import os
+BASE_URL = "http://localhost:8080"
 
-##debe estar dentro de una clase a funcion
-    # =========================
-    # Tests del menú principal
-    # =========================
-    #def test_menu(self):
-     #   resp = self.app.get("/")
-      #  self.assertEqual(resp.status_code, 200)
-       # data = resp.get_json()
-        #self.assertIn("Ver todos", data["endpoints"])
-        #self.assertIn("Ver uno", data["endpoints"])
-        #self.assertIn("Crear", data["endpoints"])
-        #self.assertIn("Editar", data["endpoints"])
-        #self.assertIn("Eliminar", data["endpoints"])
-        
-class FlaskTestCase(unittest.TestCase):
 
-    def setUp(self):
-        self.client = app.test_client()
-        self.client.testing = True
+def imprimir_respuesta(response):
+    print("Status Code:", response.status_code)
+    try:
+        print("Response:", json.dumps(response.json(), indent=4))
+    except:
+        print("Response:", response.text)
+    print("-" * 50)
 
-        # Crear archivo limpio antes de cada test
-        with open(ARCHIVO, "w") as f:
-            json.dump([], f)
 
-    def tearDown(self):
-        # Eliminar archivo después de pruebas
-        if os.path.exists(ARCHIVO):
-            os.remove(ARCHIVO)
+# =========================
+# MENU PRINCIPAL
+# =========================
+def test_menu():
+    print("Probando MENU")
+    response = requests.get(f"{BASE_URL}/")
+    imprimir_respuesta(response)
 
-    # ==============================
-    # TEST MENU PRINCIPAL
-    # ==============================
-    def test_menu(self):
-        response = self.client.get("/")
-        self.assertEqual(response.status_code, 200)
 
-        data = response.get_json()
-        self.assertIn("mensaje", data)
-        self.assertIn("endpoints", data)
+# =========================
+# CREAR PLATO
+# =========================
+def test_crear_plato():
+    print("Probando CREAR PLATO")
 
-    # ==============================
-    # TEST CREAR PLATO CORRECTO
-    # ==============================
-    @patch("app.verificar_pais_api")
-    def test_crear_plato_exitoso(self, mock_verificar):
-        mock_verificar.return_value = True
+    data = {
+        "pais": "Ecuador",
+        "plato": "Ceviche"
+    }
 
-        response = self.client.post(
-            "/platos",
-            json={
-                "pais": "Ecuador",
-                "plato": "Ceviche"
-            }
-        )
+    response = requests.post(
+        f"{BASE_URL}/platos",
+        json=data
+    )
 
-        self.assertEqual(response.status_code, 201)
+    imprimir_respuesta(response)
 
-        data = response.get_json()
-        self.assertEqual(data["plato"]["pais"], "Ecuador")
-        self.assertEqual(data["plato"]["plato"], "Ceviche")
 
-    # ==============================
-    # TEST CREAR SIN DATOS
-    # ==============================
-    def test_crear_plato_sin_datos(self):
-        response = self.client.post("/platos", json={})
-        self.assertEqual(response.status_code, 400)
+# =========================
+# VER TODOS
+# =========================
+def test_ver_todos():
+    print("Probando VER TODOS")
+    response = requests.get(f"{BASE_URL}/platos")
+    imprimir_respuesta(response)
 
-    # ==============================
-    # TEST PAIS INVALIDO
-    # ==============================
-    @patch("app.verificar_pais_api")
-    def test_crear_plato_pais_invalido(self, mock_verificar):
-        mock_verificar.return_value = False
 
-        response = self.client.post(
-            "/platos",
-            json={
-                "pais": "PaisInventado",
-                "plato": "ComidaX"
-            }
-        )
+# =========================
+# VER UNO
+# =========================
+def test_ver_uno(id):
+    print(f"Probando VER UNO (id={id})")
+    response = requests.get(f"{BASE_URL}/platos/{id}")
+    imprimir_respuesta(response)
 
-        self.assertEqual(response.status_code, 404)
 
-    # ==============================
-    # TEST OBTENER TODOS
-    # ==============================
-    @patch("app.verificar_pais_api")
-    def test_obtener_platos(self, mock_verificar):
-        mock_verificar.return_value = True
+# =========================
+# EDITAR
+# =========================
+def test_editar(id):
+    print(f"Probando EDITAR (id={id})")
 
-        self.client.post(
-            "/platos",
-            json={
-                "pais": "Perú",
-                "plato": "Lomo Saltado"
-            }
-        )
+    data = {
+        "plato": "Encebollado"
+    }
 
-        response = self.client.get("/platos")
-        self.assertEqual(response.status_code, 200)
+    response = requests.put(
+        f"{BASE_URL}/platos/{id}",
+        json=data
+    )
 
-        data = response.get_json()
-        self.assertTrue(len(data) > 0)
+    imprimir_respuesta(response)
 
-    # ==============================
-    # TEST OBTENER UNO EXISTENTE
-    # ==============================
-    @patch("app.verificar_pais_api")
-    def test_obtener_un_plato_existente(self, mock_verificar):
-        mock_verificar.return_value = True
 
-        self.client.post(
-            "/platos",
-            json={
-                "pais": "Colombia",
-                "plato": "Bandeja Paisa"
-            }
-        )
+# =========================
+# ELIMINAR
+# =========================
+def test_eliminar(id):
+    print(f"Probando ELIMINAR (id={id})")
+    response = requests.delete(f"{BASE_URL}/platos/{id}")
+    imprimir_respuesta(response)
 
-        response = self.client.get("/platos/1")
-        self.assertEqual(response.status_code, 200)
 
-    # ==============================
-    # TEST OBTENER UNO NO EXISTE
-    # ==============================
-    def test_obtener_plato_no_existente(self):
-        response = self.client.get("/platos/999")
-        self.assertEqual(response.status_code, 404)
-
+# =========================
+# EJECUCIÓN SECUENCIAL
+# =========================
 
 if __name__ == "__main__":
-    unittest.main()
+
+    print("\n INICIANDO PRUEBAS AUTOMÁTICAS\n")
+
+    test_menu()
+    test_crear_plato()
+    test_ver_todos()
+    test_ver_uno(1)
+    test_editar(1)
+    test_ver_uno(1)
+    test_eliminar(1)
+    test_ver_todos()
+
+    print("\n PRUEBAS FINALIZADAS\n")

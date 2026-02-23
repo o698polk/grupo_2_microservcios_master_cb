@@ -118,6 +118,58 @@ def crear_plato():
 
 
 # ==============================
+# EDITAR
+# ==============================
+
+@app.route("/platos/<int:id>", methods=["PUT"])
+def editar_plato(id):
+    datos = leer_datos()
+    data = request.get_json()
+
+    plato = next((p for p in datos if p["id"] == id), None)
+
+    if not plato:
+        return jsonify({"error": "Plato no encontrado"}), 404
+
+    nuevo_pais = data.get("pais")
+    nuevo_plato = data.get("plato")
+
+    if nuevo_pais:
+        if not verificar_pais_api(nuevo_pais):
+            return jsonify({"error": "El país no existe"}), 404
+        plato["pais"] = nuevo_pais
+
+    if nuevo_plato:
+        plato["plato"] = nuevo_plato
+
+    guardar_datos(datos)
+
+    return jsonify({
+        "mensaje": "Plato actualizado correctamente",
+        "plato": plato
+    }), 200
+
+
+# ==============================
+# ELIMINAR
+# ==============================
+
+@app.route("/platos/<int:id>", methods=["DELETE"])
+def eliminar_plato(id):
+    datos = leer_datos()
+
+    nuevos_datos = [p for p in datos if p["id"] != id]
+
+    if len(nuevos_datos) == len(datos):
+        return jsonify({"error": "Plato no encontrado"}), 404
+
+    guardar_datos(nuevos_datos)
+
+    return jsonify({
+        "mensaje": f"Plato con id {id} eliminado correctamente"
+    }), 200
+
+# ==============================
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080, debug=True)
