@@ -24,9 +24,72 @@ Se realizó la creación y configuración inicial del repositorio en GitHub, est
 
 ![Inicio del proyecto](/capturas_pantalla/pyinitil.png)
 
+# 👥 Distribución de Responsabilidades del Equipo
+
+## 2️ David León Guaman  
+**Responsable de la fase inicial del proyecto y desarrollo de funciones auxiliares**
+
+### 1. Configuración Inicial  
+Creación de la estructura base del proyecto, organización del entorno de trabajo y configuración inicial del repositorio.
+
+![Configuración inicial](/capturas_pantalla/Dav1.jpeg)
+
+### 2. Desarrollo de Funciones Auxiliares  
+Implementación de funciones de apoyo para optimizar la lógica interna y facilitar la gestión de datos dentro de la aplicación.
+
+![Funciones auxiliares](/capturas_pantalla/Dav2.jpeg)
+
+### 3. Implementación del Menú Principal  
+Diseño del endpoint principal que permite visualizar las rutas disponibles dentro de la API.
+
+![Menú principal](/capturas_pantalla/Dav3.jpeg)
+
+### 4. Test de Validación  
+Ejecución de pruebas para verificar el correcto funcionamiento de las funcionalidades desarrolladas en esta fase.
+
+![Test validación David](/capturas_pantalla/Dav4.jpeg)
+
 ---
 
-## 2️ Corrección de Errores y Validación de Funciones
+## 3️ Héctor Ramos Vera  
+**Responsable de la creación de funciones principales de consulta y validación con API externa**
+
+### 1. Desarrollo de Funciones CRUD (Crear y Consultar)  
+Implementación de la función para crear registros validando previamente la existencia del país mediante una API externa, así como la consulta general y consulta por ID.
+
+![Código Héctor](/capturas_pantalla/hect2.jpeg)
+
+### 2. Test de Validación  
+Pruebas funcionales para comprobar la correcta integración con la API externa y el funcionamiento de los endpoints desarrollados.
+
+![Test validación Héctor](/capturas_pantalla/hect1.jpeg)
+
+---
+
+## 4️ Polk Brando Vernaza  
+**Responsable de funciones avanzadas y configuración de entorno Docker**
+
+### 1. Desarrollo de Funciones (Editar y Eliminar)  
+Implementación de las funcionalidades para actualizar y eliminar registros almacenados en el archivo JSON.
+
+![Código Polk](/capturas_pantalla/pol1.png)
+
+### 2. Test de Validación  
+Pruebas para verificar la correcta modificación y eliminación de registros en la API.
+
+![Test validación Polk](/capturas_pantalla/polk2.png)
+
+### 3. Configuración de Dockerfile y requirements.txt  
+Creación y configuración de:
+- `Dockerfile`
+- `requirements.txt`
+- Contenerización del proyecto para su despliegue
+
+![Archivos Docker y configuración](/capturas_pantalla/polk2.png)
+
+---
+
+## 5 Corrección de Errores y Validación de Funciones
 
 Se llevó a cabo la depuración del código, optimización de la lógica y validación progresiva de cada endpoint para garantizar su correcto funcionamiento.
 
@@ -34,7 +97,7 @@ Se llevó a cabo la depuración del código, optimización de la lógica y valid
 
 ---
 
-## 3️ Ejecución de Tests Automatizados
+## 6 Ejecución de Tests Automatizados
 
 Se implementaron pruebas automatizadas para verificar de manera sistemática el funcionamiento correcto de todos los endpoints y operaciones CRUD.
 
