@@ -55,7 +55,69 @@ def menu():
             "Eliminar": "DELETE /platos/<id>"
         }
     })
+
+
+
+
+# ==============================
+# VER TODOS
 # ==============================
 
-if _name_ == "_main_":
+@app.route("/platos", methods=["GET"])
+def obtener_platos():
+    datos = leer_datos()
+    return jsonify(datos), 200
+
+
+# ==============================
+# VER UNO
+# ==============================
+
+@app.route("/platos/<int:id>", methods=["GET"])
+def obtener_plato(id):
+    datos = leer_datos()
+    plato = next((p for p in datos if p["id"] == id), None)
+
+    if not plato:
+        return jsonify({"error": "Plato no encontrado"}), 404
+
+    return jsonify(plato), 200
+
+
+# ==============================
+# CREAR
+# ==============================
+
+@app.route("/platos", methods=["POST"])
+def crear_plato():
+    datos = leer_datos()
+    data = request.get_json(force=True)
+
+    nombre_pais = data.get("pais")
+    nombre_plato = data.get("plato")
+
+    if not nombre_pais or not nombre_plato:
+        return jsonify({"error": "Se requiere país y plato"}), 400
+
+    if not verificar_pais_api(nombre_pais):
+        return jsonify({"error": "El país no existe"}), 404
+
+    nuevo_plato = {
+        "id": generar_id(datos),
+        "pais": nombre_pais,
+        "plato": nombre_plato
+    }
+
+    datos.append(nuevo_plato)
+    guardar_datos(datos)
+
+    return jsonify({
+        "mensaje": "Plato creado exitosamente",
+        "plato": nuevo_plato
+    }), 201
+
+
+# ==============================
+
+if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080, debug=True)
