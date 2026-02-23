@@ -182,7 +182,6 @@ Se llevó a cabo el despliegue de la aplicación utilizando Google Cloud Run, co
 
 Este proceso incluyó:
 - Construcción automática de la imagen Docker
-- Publicación en Artifact Registry
 - Despliegue del servicio en Cloud Run
 - Configuración de acceso público
 
