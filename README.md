@@ -77,7 +77,7 @@ Implementación de las funcionalidades para actualizar y eliminar registros alma
 ### 2. Test de Validación  
 Pruebas para verificar la correcta modificación y eliminación de registros en la API.
 
-![Test validación Polk](/capturas_pantalla/polk2.png)
+![Test validación Polk](/capturas_pantalla/pol2.png)
 
 ### 3. Configuración de Dockerfile y requirements.txt  
 Creación y configuración de:
@@ -85,7 +85,7 @@ Creación y configuración de:
 - `requirements.txt`
 - Contenerización del proyecto para su despliegue
 
-![Archivos Docker y configuración](/capturas_pantalla/polk2.png)
+![Archivos Docker y configuración](/capturas_pantalla/pol2.png)
 
 ---
 
