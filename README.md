@@ -22,7 +22,7 @@ Antes de registrar un nuevo plato, el sistema valida la existencia del país med
 
 Se realizó la creación y configuración inicial del repositorio en GitHub, estableciendo la estructura base del proyecto y organizando el trabajo colaborativo del equipo.
 
-![Inicio del proyecto](/capturas_pantalla/pyinitil.png.png)
+![Inicio del proyecto](/capturas_pantalla/pyinitil.png)
 
 ---
 
