@@ -142,7 +142,7 @@ Ejecución del contenedor Docker con la API funcionando correctamente dentro del
 Validación manual de cada endpoint utilizando comandos cURL.
 
 ### 4.1 Mostrar el Menú Principal
-![Menú principal](/capturas_pantalla/tespy_1.png)
+![Menú principal](/capturas_pantalla/tespy_2.1.png)
 
 ### 4.2 Crear un Registro (Validando País Existente)
 ![Crear registro](/capturas_pantalla/tespy_2.png)
