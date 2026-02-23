@@ -48,7 +48,7 @@ Se implementaron pruebas automatizadas para verificar de manera sistemática el 
 
 Ejecución correcta de la aplicación en entorno local verificando el acceso a los endpoints.
 
-![API local](/capturas_pantalla/lcpy.png)
+![API local](/capturas_pantalla/lcpy1.png)
 
 ---
 
@@ -97,7 +97,7 @@ Validación manual de cada endpoint utilizando comandos cURL.
 ![Editar registro](/capturas_pantalla/tespy_6.png)
 
 ### 4.7 Eliminar un Registro
-![Eliminar registro](image.png)
+![Eliminar registro](/capturas_pantalla/tespy_7.png)
 
 ---
 
